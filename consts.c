@@ -1,0 +1,22 @@
+
+
+
+
+
+#define MOTOR_LR_LPIN 2
+#define MOTOR_LR_RPIN 4
+#define MOTOR_LR_SPEEDPIN 3
+
+#define MOTOR_FB_FPIN 7
+#define MOTOR_FB_BPIN 8
+#define MOTOR_FB_SPEEDPIN 11
+
+#define SERIAL_FREQUENCY 9600
+
+#define EVENT_NUMBER 8
+
+#define MODE_DO_PROGRAM 0
+#define MODE_CONTROL 1
+#define MODE_PROGRAMMING 2
+
+
