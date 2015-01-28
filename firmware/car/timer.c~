@@ -1,0 +1,16 @@
+
+void timerInit(){
+	TCCR2A=0;
+	TCCR2B=4;// /64
+	TIMSK2=2;//совпадение с А
+	ASSR=0;
+	OCR2A=250;
+}
+
+ISR(TIMER2_COMPA_vect){//обработчик прерывания по совпадению А
+	pushEvent(VEC_MILLISEC);
+	updateMotor();
+	TCNT2=0;
+}
+
+

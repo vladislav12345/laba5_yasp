@@ -1,0 +1,61 @@
+
+void init(){
+	Serial.begin(SERIAL_FREQUENCITY);
+	motorInit();
+	eventQueueInit();
+	timerInit();
+	//codeInit();
+
+	core.mode=MODE_CONTROL;
+}
+
+void process(){
+	switch(core.mode){
+		case MODE_DO_PROGRAM:{//режим исполнения программы
+			byte event=getEvent();
+
+			break;
+		}case MODE_CONTROL:{//режим ручного управления
+			if(Serial.available){
+				byte cmd=Serial.read();
+
+				if(cmd=='w'){
+					motorMove(0,FB_FORWARD,motor.lr);
+				}else if(cmd=='W' && motor.fb==FB_FORWARD){
+					motorMove(0,FB_STOP,motor.lr);
+				}
+
+				if(cmd=='s'){
+					motorMove(0,FB_BACK,motor.lr);
+				}else if(cmd=='S' && motor.fb==FB_BACK){
+					motorMove(0,FB_STOP,motor.lr);
+				}
+
+				if(cmd=='a'){
+					motorMove(0,motor.fb,LR_LEFT);
+				}else if(cmd=='A' && motor.lr==LR_LEFT){
+					motorMove(0,motor.fb,LR_CENTER);
+				}
+
+				if(cmd=='d'){
+					motorMove(0,motor.fb,LR_RIGHT);
+				}else if(cmd=='D' && motor.lr==LR_RIGHT){
+					motorMove(0,motor.fb,LR_CENTER);
+				}
+
+				if(cmd=='d'){
+					core.mode=MODE_DO_PROGRAM;
+				}else if(cmd=='P'){
+					core.mode=MODE_PROGRAMMING;
+				}
+			}
+	
+			break;
+		}case MODE_PROGRAMMING:{//режим программирования машинки
+
+			break;
+		}
+	}
+}
+
+

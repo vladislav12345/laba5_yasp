@@ -1,0 +1,12 @@
+
+#include "const.c"
+
+struct Core{
+	byte mode;
+}core;
+
+#include "event.c"
+#include "motor.c"
+#include "timer.c"
+#include "code.c"
+#include "process.c"

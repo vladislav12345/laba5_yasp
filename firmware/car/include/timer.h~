@@ -1,0 +1,10 @@
+struct Timer{
+	byte counter;
+	int seccounter;
+};
+
+void timerInit();
+
+ISR(TIMER2_COMPA_vect);
+
+

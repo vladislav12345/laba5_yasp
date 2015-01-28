@@ -1,0 +1,16 @@
+#include "car.h"
+
+Core core;
+
+
+#include "rr/event.c"
+#include "rr/motor.c"
+#include "rr/timer.c"
+#include "rr/code.c"
+#include "rr/process.c"
+
+int freeRam () {
+  extern int __heap_start, *__brkval; 
+  int v; 
+  return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
+}
